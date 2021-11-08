@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 950efdd23d568c940b75944c384a6a48, type: 3}
+  m_Name: Tile Collections
+  m_EditorClassIdentifier: 
+  TileCodes:
+  - None
+  - RedLava
+  - YellowCandy
+  - BlueRiver
+  - GreenGrass
+  - BlueOcean
+  TileModels:
+  - TileName: None
+    TilePrefab: {fileID: 5621182868664020795, guid: 9b052ee7ca96e7342ac2d9044660ed6d, type: 3}
+    BaseStatus: 0
+  - TileName: RedLava
+    TilePrefab: {fileID: 8691838455894428050, guid: ce29376e26f4edc4bb72fc6cb6ee2e90, type: 3}
+    BaseStatus: 2
+  - TileName: YellowCandy
+    TilePrefab: {fileID: 5515284704808087569, guid: c37ddf9fd11a2f44d803d43b794f67fb, type: 3}
+    BaseStatus: 1
+  - TileName: BlueRiver
+    TilePrefab: {fileID: 8798576710170584798, guid: 19962115ee75df2468c2d3a6e5491d93, type: 3}
+    BaseStatus: 1
+  - TileName: GreenGrass
+    TilePrefab: {fileID: 6645007266027851192, guid: a5d6165a569872a4eae4e3a013b9d6c4, type: 3}
+    BaseStatus: 1
+  - TileName: BlueOcean
+    TilePrefab: {fileID: 3565831132775673360, guid: b4abe8844ff8d6245ab6eed31d1d19c1, type: 3}
+    BaseStatus: 2
