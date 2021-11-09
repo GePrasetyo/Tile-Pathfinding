@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 namespace Assets.Scripts.Component
 {
+
+    [SelectionBase]
     public class TileBaseComponent : MonoBehaviour
     {
         public TileCollections TileTypes;
@@ -15,6 +17,7 @@ namespace Assets.Scripts.Component
 
         [HideInInspector] public TileStatusEnum TileStatus;
 
+        [Header("Tile Properties")]
         //A* Variables
         /*[HideInInspector]*/ public int X;
         /*[HideInInspector]*/ public int Y;
@@ -33,6 +36,11 @@ namespace Assets.Scripts.Component
             var component = Instantiate(_model.TilePrefab, this.transform);
 
             TileStatus = _model.BaseStatus;
+
+            if (TypeIndex == 0)
+                GetComponentInChildren<TileStyler>().HideFromCamera(true);
+            else
+                GetComponentInChildren<TileStyler>().HideFromCamera(false);
         }
 
         public void UpdateType()

@@ -1,36 +1,61 @@
 using UnityEngine;
 using UnityEditor;
+using Assets.Scripts.Component;
 
 
-[CustomEditor(typeof(Assets.Scripts.Component.TileBaseComponent))]
+[CanEditMultipleObjects]
+[CustomEditor(typeof(TileBaseComponent))]
 public class TileBaseInspector : Editor
 {
+    void OnEnable()
+    {
+
+    }
+
     public override void OnInspectorGUI()
     {
         DrawDefaultInspector();
 
-        var theClass = (Assets.Scripts.Component.TileBaseComponent)target;
+        var theClasses = targets;
+        var mainEditor = (TileBaseComponent)targets[0];
 
-        GUIContent status = new GUIContent("Tile Status : " +theClass.TileStatus);
+        GUIContent status = new GUIContent("Tile Status : " + mainEditor.TileStatus);
         EditorGUILayout.LabelField(status);
 
-        if (theClass.TileTypes)
+        EditorGUILayout.Space();
+        GUIContent headerstyle = new GUIContent("Tile Style");
+        EditorGUILayout.LabelField(headerstyle);
+
+
+        if (mainEditor.TileTypes)
         {
             GUIContent tileLabel = new GUIContent("Tile Type");
-            var indexSelected = EditorGUILayout.Popup(tileLabel, theClass.TypeIndex, theClass.TileTypes.TileCodes.ToArray());
+            var indexSelected = EditorGUILayout.Popup(tileLabel, mainEditor.TypeIndex, mainEditor.TileTypes.TileCodes.ToArray());
+            var prevSelected = 0;
 
-            theClass.TypeIndex = indexSelected;
-            theClass.TypeCode = theClass.TileTypes.TileCodes[indexSelected];
+            foreach (TileBaseComponent tc in theClasses)
+            {
+                prevSelected = tc.TypeIndex;
 
-            
+                tc.TypeIndex = indexSelected;
+                tc.TypeCode = mainEditor.TileTypes.TileCodes[indexSelected];
+
+                if(prevSelected != indexSelected)
+                    tc.UpdateType();
+            }
         }
 
-        EditorGUILayout.Space();
-        EditorGUILayout.Space();
+        //EditorGUILayout.Space();
+        //EditorGUILayout.Space();
 
-        if (GUILayout.Button("Update Tile"))
-        {
-            theClass.UpdateType();
-        }
+        //if (GUILayout.Button("Update Tile"))
+        //{
+        //    foreach (TileBaseComponent tc in theClasses)
+        //    {
+        //        tc.UpdateType();
+        //    }
+        //}
+
+        
     }
 }

@@ -30,4 +30,9 @@ public class TileStyler : MonoBehaviour
         GetComponent<MeshFilter>().sharedMesh = StyleData.TileStyles[StyleIndex].Mesh;
         GetComponent<MeshRenderer>().sharedMaterials = StyleData.TileStyles[StyleIndex].Materials;
     }
+
+    public void HideFromCamera(bool flag)
+    {
+        this.gameObject.layer = LayerMask.NameToLayer(flag ? "TransparantTile" : "Default");
+    }
 }
